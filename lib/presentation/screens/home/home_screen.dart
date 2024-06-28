@@ -56,7 +56,7 @@ class _CustomListView extends StatelessWidget {
       subtitle: Text(menuItem.subTitle),
       onTap: () {
         // context.pushNamed(ButtonsScreen.name);
-        GoRouter.of(context).go(menuItem.link);
+        context.push(menuItem.link);
       },
     );
   }
