@@ -26,6 +26,11 @@ const appMenuItems = <MenuItems>[
       link: Routes.cards,
       icon: Icons.credit_card),
   MenuItems(
+      title: 'Progreso',
+      subTitle: 'Progreso con Flutter',
+      link: Routes.progress,
+      icon: Icons.change_circle_outlined),
+  MenuItems(
       title: 'Animaciones',
       subTitle: 'Animaciones con Flutter',
       link: Routes.animated,
@@ -35,9 +40,4 @@ const appMenuItems = <MenuItems>[
       subTitle: 'Scroll infinito con Flutter',
       link: Routes.infiniteScroll,
       icon: Icons.arrow_downward),
-  MenuItems(
-      title: 'Progreso',
-      subTitle: 'Progreso con Flutter',
-      link: Routes.progress,
-      icon: Icons.change_circle_outlined),
 ];
