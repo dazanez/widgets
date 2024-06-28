@@ -18,7 +18,7 @@ const colors = <Color>[
 class AppTheme {
   final int selectedColor;
 
-  AppTheme({this.selectedColor = 0})
+  AppTheme({this.selectedColor = 1})
       : assert(selectedColor >= 0 && selectedColor < colors.length,
             'There are only ${colors.length} colors, you can select up to ${colors.length - 1} color index');
 
