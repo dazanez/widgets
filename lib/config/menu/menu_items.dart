@@ -36,10 +36,10 @@ const appMenuItems = <MenuItems>[
       link: Routes.snackbar,
       icon: Icons.info_outline),
   MenuItems(
-      title: 'Animaciones',
-      subTitle: 'Animaciones con Flutter',
+      title: 'Animated Container',
+      subTitle: 'Stateful Widget animado',
       link: Routes.animated,
-      icon: Icons.animation),
+      icon: Icons.crop_square),
   MenuItems(
       title: 'Scroll infinito',
       subTitle: 'Scroll infinito con Flutter',
