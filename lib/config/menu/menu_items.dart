@@ -31,6 +31,11 @@ const appMenuItems = <MenuItems>[
       link: Routes.progress,
       icon: Icons.change_circle_outlined),
   MenuItems(
+      title: 'Snackbars y diálogos',
+      subTitle: 'Indicadores en pantalla',
+      link: Routes.snackbar,
+      icon: Icons.info_outline),
+  MenuItems(
       title: 'Animaciones',
       subTitle: 'Animaciones con Flutter',
       link: Routes.animated,
