@@ -97,11 +97,14 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
         ),
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(),
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
             child: FloatingActionButton(
               heroTag: 'floatingButtonChangeCurve',
               onPressed: () => changeCurve(context),
@@ -109,7 +112,7 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
             child: FloatingActionButton(
               heroTag: 'floatingButtonPreviousShape',
               onPressed: changeToPreviousShape,
@@ -117,7 +120,7 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
             child: FloatingActionButton(
               heroTag: 'floatingButtonChangeShape',
               onPressed: changeShape,
