@@ -82,6 +82,7 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
       body: Center(
         child: GestureDetector(
           onTap: changeShape,
+          onHorizontalDragEnd: (_) => changeToPreviousShape(),
           child: AnimatedContainer(
             curve: curve,
             duration: const Duration(milliseconds: 350),
