@@ -41,6 +41,11 @@ const appMenuItems = <MenuItems>[
       link: Routes.animated,
       icon: Icons.crop_square),
   MenuItems(
+      title: 'UI controls + Tiles',
+      subTitle: 'Varios controles de Flutter',
+      link: Routes.uiControls,
+      icon: Icons.stay_current_portrait_outlined),
+  MenuItems(
       title: 'Scroll infinito',
       subTitle: 'Scroll infinito con Flutter',
       link: Routes.infiniteScroll,

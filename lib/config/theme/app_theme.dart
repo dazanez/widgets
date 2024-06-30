@@ -22,11 +22,14 @@ class AppTheme {
       : assert(selectedColor >= 0 && selectedColor < colors.length,
             'There are only ${colors.length} colors, you can select up to ${colors.length - 1} color index');
 
-  ThemeData getTheme() => ThemeData(
-    useMaterial3: true,
-    colorSchemeSeed: colors[selectedColor],
-    appBarTheme: const AppBarTheme(
-      centerTitle: false, 
-    ),
-  );
+  ThemeData getTheme({bool toDark = false}) => ThemeData(
+        useMaterial3: true,
+        brightness: toDark ? Brightness.dark : Brightness.light,
+        colorSchemeSeed: colors[selectedColor],
+        appBarTheme: const AppBarTheme(
+          centerTitle: false,
+        ),
+      );
+
+  ThemeData getDarkTheme() => getTheme(toDark: true);
 }
