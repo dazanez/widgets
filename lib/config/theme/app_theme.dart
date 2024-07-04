@@ -16,20 +16,38 @@ const colors = <Color>[
 ];
 
 class AppTheme {
-  final int selectedColor;
+  final int _selectedColor;
+  final Color? customColor;
 
-  AppTheme({this.selectedColor = 1})
-      : assert(selectedColor >= 0 && selectedColor < colors.length,
-            'There are only ${colors.length} colors, you can select up to ${colors.length - 1} color index');
+  /// Prefer use [AppTheme.fromColor] as you can set a new theme from any color, instead of the limited colors that [AppTheme] gives
+  AppTheme({int selectedColor = 1})
+      : _selectedColor = selectedColor,
+        assert(selectedColor >= 0 && selectedColor < colors.length,
+            'There are only ${colors.length} colors, you can select up to ${colors.length - 1} color index'),
+        customColor = null;
+
+  AppTheme.fromColor({required Color this.customColor}) : _selectedColor = 0;
 
   ThemeData getTheme({bool toDark = false}) => ThemeData(
         useMaterial3: true,
         brightness: toDark ? Brightness.dark : Brightness.light,
-        colorSchemeSeed: colors[selectedColor],
+        colorSchemeSeed: customColor ?? colors[_selectedColor],
         appBarTheme: const AppBarTheme(
           centerTitle: false,
         ),
       );
 
   ThemeData getDarkTheme() => getTheme(toDark: true);
+
+  List<Color> get themesColors {
+    return colors;
+  }
+
+  Color get currentColor {
+    return colors[_selectedColor];
+  }
+
+  int get indexOfCurrentColor {
+    return _selectedColor;
+  }
 }

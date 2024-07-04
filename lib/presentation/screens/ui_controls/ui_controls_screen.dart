@@ -25,15 +25,17 @@ class _UiControlsView extends StatefulWidget {
   State<_UiControlsView> createState() => _UiControlsViewState();
 }
 
-enum Transportation { car, plane, boat, submarine }
-
 class _UiControlsViewState extends State<_UiControlsView> {
   bool darkThemeActive = true;
-  Transportation selectedTransportation = Transportation.car;
+  Color selectedColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
-    darkThemeActive = context.read<ThemeProvider>().themeMode == ThemeMode.dark;
+    final ThemeProvider themeProvider = context.watch<ThemeProvider>();
+    final List<Color> themesColors = themeProvider.themesColors;
+    darkThemeActive = themeProvider.themeMode == ThemeMode.dark;
+    selectedColor = themeProvider.colorSeed ?? selectedColor;
+
     return ListView(
       physics: const ClampingScrollPhysics(),
       children: [
@@ -41,13 +43,40 @@ class _UiControlsViewState extends State<_UiControlsView> {
           value: darkThemeActive,
           title: const Text('Activate dark theme'),
           subtitle: const Text('Switch dark and light theme of the app'),
-          onChanged: (isDarkMode) {
-            context.read<ThemeProvider>().changeThemeMode(
+          onChanged: (isDarkMode) => setState(() {
+            themeProvider.changeThemeMode(
                 themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light);
-            setState(() {
-              darkThemeActive = !darkThemeActive;
-            });
-          },
+            darkThemeActive = !darkThemeActive;
+          }),
+        ),
+        ExpansionTile(
+          title: Text('Color: ${selectedColor.value}'),
+          leading: Icon(
+            Icons.square_rounded,
+            color: selectedColor,
+          ),
+          children: [
+            ...themesColors.map((color) => RadioListTile(
+                title: Text('Color: ${color.value}'),
+                secondary: Icon(
+                  Icons.square_rounded,
+                  color: color,
+                ),
+                value: color,
+                groupValue: selectedColor,
+                onChanged: (_) => setState(() {
+                      selectedColor = color;
+                      themeProvider.colorSeed = color;
+                    }))),
+            RadioListTile(
+                title: const Text('Other color'),
+                secondary: !themesColors.contains(selectedColor) ? Icon(Icons.square_rounded, color: selectedColor,) : null,
+                value: themesColors.contains(selectedColor)
+                    ? Colors.transparent
+                    : selectedColor,
+                groupValue: selectedColor,
+                onChanged: null)
+          ],
         ),
       ],
     );

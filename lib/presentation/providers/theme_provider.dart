@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/theme/app_theme.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = AppTheme(selectedColor: 0).getTheme();
-  ThemeMode _themeMode = ThemeMode.light;
-  ThemeData _darkThemeData = AppTheme(selectedColor: 0).getDarkTheme();
+/// The available colors, uses a reference of the colors in AppTheme
+final List<Color> _colors = AppTheme().themesColors;
 
-  /// Changes the theme to the given themeData. Brightness will be according to the themeMode of this provider
+/// An AppTheme object for related actions
+AppTheme _appTheme = AppTheme(selectedColor: 0);
+
+class ThemeProvider extends ChangeNotifier {
+  Color? _colorSeed = _appTheme.currentColor;
+  ThemeData _themeData = _appTheme.getTheme();
+  ThemeData _darkThemeData = _appTheme.getDarkTheme();
+  ThemeMode _themeMode = ThemeMode.light;
+
+  /// Changes the theme to the given themeData. Brightness will be according to the themeMode of this provider. Changing the theme by this way, will set [colorSeed] to null. If you want to change according to a [colorSeed] use the [colorSeed] setter and the theme will change too
   Future<void> changeTheme(ThemeData themeData) async {
-    if (_themeMode == ThemeMode.dark) {
-      _darkThemeData = themeData.copyWith(brightness: Brightness.dark);
-    } else if (_themeMode == ThemeMode.light) {
-      _themeData = themeData.copyWith(brightness: Brightness.light);
+    _colorSeed = null;
+
+    final Color primary = themeData.colorScheme.primary;
+    _appTheme = AppTheme.fromColor(customColor: primary);
+
+    if (_themeMode == ThemeMode.dark || _themeMode == ThemeMode.light) {
+      _darkThemeData = _appTheme.getDarkTheme();
+      _themeData = _appTheme.getTheme();
     } else {
       _themeData = themeData;
     }
     notifyListeners();
+  }
+
+  void _changeThemeWithColorSeed(ThemeData themeData, Color colorSeed) {
+    // Changing the order will make _colorSeed to be null due to the [changeTheme] behavior
+    changeTheme(themeData);
+    _colorSeed = colorSeed;
+    // notifyListeners(); // No need for now :)
   }
 
   /// Sets the themeMode if given. Otherwise, switches between light and dark. If the current themeMode is ThemeMode.system, then there won't be any changes.
@@ -31,15 +49,31 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  get themeData {
+  ThemeData get themeData {
     return _themeData;
   }
 
-  get darkThemeData {
+  ThemeData get darkThemeData {
     return _darkThemeData;
   }
 
-  get themeMode {
+  ThemeMode get themeMode {
     return _themeMode;
+  }
+
+  /// The available colors, uses a reference of the colors in AppTheme
+  List<Color> get themesColors {
+    return _colors;
+  }
+
+  set colorSeed(Color? color) {
+    color = color ?? _appTheme.currentColor;
+    _changeThemeWithColorSeed(
+        AppTheme.fromColor(customColor: color).getTheme(), color);
+  }
+
+  /// Returns the colorSeed used for the current [themeData], returns null if no colorSeed was used
+  Color? get colorSeed {
+    return _colorSeed;
   }
 }
