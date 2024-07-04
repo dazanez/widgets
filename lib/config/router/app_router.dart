@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/routes/routes.dart';
 import 'package:widgets_app/presentation/screens/screens.dart';
-import 'package:widgets_app/presentation/screens/snackbar/snackbar_screen.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(

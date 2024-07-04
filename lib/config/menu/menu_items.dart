@@ -46,6 +46,11 @@ const appMenuItems = <MenuItems>[
       link: Routes.uiControls,
       icon: Icons.stay_current_portrait_outlined),
   MenuItems(
+      title: 'Introducción a la aplicación',
+      subTitle: 'Un tutorial para conocer la app',
+      link: Routes.appTutorial,
+      icon: Icons.accessibility_new_rounded),
+  MenuItems(
       title: 'Scroll infinito',
       subTitle: 'Scroll infinito con Flutter',
       link: Routes.infiniteScroll,
