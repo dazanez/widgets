@@ -28,12 +28,13 @@ class _UiControlsView extends StatefulWidget {
 class _UiControlsViewState extends State<_UiControlsView> {
   bool darkThemeActive = true;
   Color selectedColor = Colors.blue;
+  bool wantsBreakfast = false, wantsLunch = false, wantsMeal = false;
 
   @override
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = context.watch<ThemeProvider>();
     final List<Color> themesColors = themeProvider.themesColors;
-    
+
     darkThemeActive = themeProvider.themeMode == ThemeMode.dark;
     selectedColor = themeProvider.colorSeed ?? selectedColor;
 
@@ -85,6 +86,24 @@ class _UiControlsViewState extends State<_UiControlsView> {
                 onChanged: null)
           ],
         ),
+        CheckboxListTile(
+            title: const Text('Include breakfast'),
+            value: wantsBreakfast,
+            onChanged: (_) => setState(() {
+                  wantsBreakfast = !wantsBreakfast;
+                })),
+        CheckboxListTile(
+            title: const Text('Include lunch'),
+            value: wantsLunch,
+            onChanged: (_) => setState(() {
+                  wantsLunch = !wantsLunch;
+                })),
+        CheckboxListTile(
+            title: const Text('Include meal'),
+            value: wantsMeal,
+            onChanged: (_) => setState(() {
+                  wantsMeal = !wantsMeal;
+                })),
       ],
     );
   }
