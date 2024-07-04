@@ -33,6 +33,7 @@ class _UiControlsViewState extends State<_UiControlsView> {
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = context.watch<ThemeProvider>();
     final List<Color> themesColors = themeProvider.themesColors;
+    
     darkThemeActive = themeProvider.themeMode == ThemeMode.dark;
     selectedColor = themeProvider.colorSeed ?? selectedColor;
 
@@ -50,7 +51,8 @@ class _UiControlsViewState extends State<_UiControlsView> {
           }),
         ),
         ExpansionTile(
-          title: Text('Color: ${selectedColor.value}'),
+          title: const Text('Select a color theme'),
+          subtitle: Text('Selected color: ${selectedColor.value}'),
           leading: Icon(
             Icons.square_rounded,
             color: selectedColor,
@@ -70,7 +72,12 @@ class _UiControlsViewState extends State<_UiControlsView> {
                     }))),
             RadioListTile(
                 title: const Text('Other color'),
-                secondary: !themesColors.contains(selectedColor) ? Icon(Icons.square_rounded, color: selectedColor,) : null,
+                secondary: !themesColors.contains(selectedColor)
+                    ? Icon(
+                        Icons.square_rounded,
+                        color: selectedColor,
+                      )
+                    : null,
                 value: themesColors.contains(selectedColor)
                     ? Colors.transparent
                     : selectedColor,
