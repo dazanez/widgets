@@ -125,7 +125,7 @@ class _Slide extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image.asset(imageUrl), // Es lo mismo que usar AssetImage
-            Image(image: AssetImage(imageUrl)),
+            Image(image: AssetImage(imageUrl), height: 250,),
             const SizedBox(
               height: 20,
             ),
