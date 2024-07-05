@@ -35,11 +35,11 @@ class _HomeView extends StatelessWidget {
 }
 
 class _CustomListView extends StatelessWidget {
+  final MenuItems menuItem;
+  
   const _CustomListView({
     required this.menuItem,
   });
-
-  final MenuItems menuItem;
 
   @override
   Widget build(BuildContext context) {
