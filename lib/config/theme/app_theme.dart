@@ -32,15 +32,16 @@ class AppTheme {
         useMaterial3: true,
         brightness: toDark ? Brightness.dark : Brightness.light,
         colorSchemeSeed: customColor ?? colors[_selectedColor],
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
-          }
-        ),
         appBarTheme: const AppBarTheme(
           centerTitle: false,
         ),
+        // Cupertino builder
+        // pageTransitionsTheme: const PageTransitionsTheme(
+        //   builders: {
+        //     TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        //     TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
+        //   }
+        // ),
       );
 
   ThemeData getDarkTheme() => getTheme(toDark: true);
