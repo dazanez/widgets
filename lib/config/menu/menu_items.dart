@@ -51,8 +51,8 @@ const appMenuItems = <MenuItems>[
       link: Routes.appTutorial,
       icon: Icons.accessibility_new_rounded),
   MenuItems(
-      title: 'Scroll infinito',
-      subTitle: 'Scroll infinito con Flutter',
+      title: 'Scroll infinito y pull',
+      subTitle: 'Listas infinitas y deslizar para actualizar',
       link: Routes.infiniteScroll,
       icon: Icons.arrow_downward),
 ];
