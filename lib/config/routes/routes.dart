@@ -1,6 +1,7 @@
 class Routes {
   static const String root = '/';
-  static const String counter = '/counter';
+  static const String counter = '/counter-riverpod';
+  static const String themeChanger = '/theme-changer';
   static const String cards = '/cards';
   static const String buttons = '/buttons';
   static const String animated = '/animated';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:widgets_app/presentation/providers/theme_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
 class UiControlsScreen extends StatelessWidget {
   static const name = 'ui_controls_screen';
@@ -30,6 +30,20 @@ class _UiControlsViewState extends State<_UiControlsView> {
   Color selectedColor = Colors.blue;
   bool wantsBreakfast = false, wantsLunch = false, wantsMeal = false;
 
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        SwitchListTile(
+          value: darkThemeActive,
+          onChanged: (_) => setState(() => darkThemeActive = !darkThemeActive),
+          title: const Text('This view has been disabled because used Provider, and current tests with Riverpod are been done'),
+        )
+      ],
+    );
+  }
+
+/* Commented becuase it used Provider and causes error with Riverpod
   @override
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = context.watch<ThemeProvider>();
@@ -107,4 +121,5 @@ class _UiControlsViewState extends State<_UiControlsView> {
       ],
     );
   }
+  */
 }
