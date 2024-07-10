@@ -11,18 +11,18 @@ void main() {
   ));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final AppTheme appTheme = AppTheme(selectedColor: 0);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AppTheme appTheme = ref.watch(themeNotifierProvider);
+
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'Widgets App',
       debugShowCheckedModeBanner: false,
       theme: appTheme.getTheme(),
-      darkTheme: appTheme.getDarkTheme(),
       // themeMode: themeProvider.themeMode,
     );
   }
